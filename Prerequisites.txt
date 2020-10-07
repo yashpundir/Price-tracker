@@ -1,0 +1,121 @@
+=============================
+       PRICE TRACKER
+=============================
+
+What this application does is explained on my github repo :-
+https://github.com/Noobie20/Price-tracker
+
+-------------------------------------------------------------------------------
+This file is for explaining what the application needs in order to work properly.
+-------------------------------------------------------------------------------
+
+< 1 > WEB - SCRAPING
+
+The  script uses requests and BeautifulSoup for web-scraping.
+Since Amazon uses different CSS IDs and classes for the products that are in a sale
+or offer, the scipt can only scrape off data from regular products which are not in
+any kind of sale/offer or anything like that. Since its fairly easy to implement the code
+that would scrape products that are under sale/offer as well (just a different ID or
+class in the HTML code), I might implement it soon.
+
+
+< 2 > Google Spreadsheets
+
+Google spreadsheets is used as an database for this application.
+3 Google Spreadsheets will be needed, that would be on your G-Drive in order for this to work.
+The format of the spreadsheets should be as follows:
+
+ (I) Name : URLs
+     2 Columns required:
+     
+     ITEM   |   URL    |
+     ------------------------------
+	    | 	       |	
+     ------------------------------
+     	    | 	       |
+     ------------------------------
+            |	       |
+
+
+ (II) Name : Amazon
+    1 Column required:
+     
+     DAY/PRODUCTS |	       |
+     -------------------------------------
+	          | 	       |	
+     -------------------------------------
+     	          | 	       |
+     -------------------------------------
+                  |	       |
+    	
+ (III) Name : Flipkart
+       1 Column required:
+       
+       DAY/PRODUCTS |	       |
+       -------------------------------------
+	            | 	       |	
+       -------------------------------------
+       	            | 	       |
+       -------------------------------------
+                    |	       |
+
+< 3 > APIs
+
+This application uses 3 APIs :
+   (i) Google Sheets API
+  (ii) Google Drive API
+ (iii) Twilio API
+
+-In order for the application to work, the user must create an account on Google developers console
+ After making an account, the user must enable Google Sheets API & Google Drive API.
+ Once done, user must create credentials for the Google Sheets API, and download the json file that
+ has the user's credentials in it. Watch this video in order to clearly understand this procedure :
+ https://www.youtube.com/watch?v=cnPlKLEGR7E&t=603s
+ After downloading the json file that has your credentials in it, rename it to 'credentials.json' and place
+ it in the root of the directory.
+ You also need to share your client_email (in credential.json) to the all 3 of the G-spreadsheets that you created 
+ earlier, as shown in the video. This completes the G-Sheets API
+
+-Now onto Twilio API for sending WhatsApp message purposes. Go to twilio's website and sign up for a free account
+ Verify your phone whatsapp phone number through the process shown on the website. Store you credentials safely somewhere
+ that you get for your Twilio API. 
+
+
+< 3 > CLOUD DEPLOYMENT
+
+ In order for the script to run everyday, the user needs to create a cloud service account. I used heroku. 
+ Make a free heroku account, initiate a new app, install heroku CLI.
+ Now make a folder where you can store all the necessary files for this project. This folder (root directoory) 
+  must contain the following files:
+ 
+ 1. credentials.json (from the google developers console)
+ 2. Procfile (simple text file BUT WITH NO EXTENSION, JUST 'Procfile')
+ 3. requirements.txt (which can be created from CMD)
+ 4. runtime.txt
+ 5. source.py
+ 6. source_input.py
+
+ Initiate a git repository here, add all files, commit them and push them to heroku.
+ Then you
+ Video tutorial for better understanding heroku deployment :
+ https://www.youtube.com/watch?v=qquCAgwvL8Q&t=828s
+ You need to add your twilio API keys on heroku under the settings tab
+ You also need to remember to push the files as is the folder structure shown above. No subfolder must be present.
+
+ NOTE : The application will work and store data in the spreadsheets on for the 1st 23 days of every month since
+ 	heroku provides 550 free dyno hours per month to its free users. But you can expand this limit to 1000 free dyno hours
+        per month by just verifying you credit card on ther heroku website, which will keep this application up and 
+        running 24*7*365.The script actually is running 24*7 on the cloud and never stops, but the scraping part is done 
+     	only once in 24 hours. 
+
+
+ < 4 > USER - CONTROL
+
+ The user can input the product (only from amazon or flipkart) by running the source_input.py script locally or from the cloud.
+ The details are stored in the Google spreadsheet. And That's it.
+
+
+
+----------SET UP COMPLETE----------------
+The user can now sit back & relax and wait for the price of any particular product to drop, which if it does, the user shall revieve a message on 
+WhatsApp regarding the same.
