@@ -109,7 +109,7 @@ def messaging():
 			if yes_value!='ERROR (Check pg config)' and tod_value!='ERROR (Check pg config)' and int(tod_value)<int(yes_value):
 				message = client.messages.create( 
 		                              from_='whatsapp:+14155238886',  
-		                              body=f"Hey, the price of {item_name} has dropped since yesterday. Go check it out\n{amazon_urls[item_name]}",      
+		                              body=f"Hey, the price of {item_name} has dropped since yesterday. Go check it out",      
 		                              media_url=img_url,
 		                              to='whatsapp:+917000263689')
 
@@ -125,7 +125,7 @@ def messaging():
 			if yes_value!='ERROR (Check pg config)' and tod_value!='ERROR (Check pg config)' and int(tod_value)<int(yes_value):
 				message = client.messages.create( 
 		                              from_='whatsapp:+14155238886',  
-		                              body=f"Hey, the price of {item_name} has dropped since yesterday. Go check it out\n{flipkart_urls[item_name]}",      
+		                              body=f"Hey, the price of {item_name} has dropped since yesterday. Go check it out",      
 		                              media_url=img_url,
 		                              to='whatsapp:+917000263689')
 
