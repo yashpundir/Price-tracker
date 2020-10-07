@@ -131,8 +131,8 @@ def messaging():
 
 
 # SCHEDLING THE JOB TO RUN EVERYDAY AT 01:00 PM
-schedule.every().day.at('13:00').do(scraping)
-schedule.every().day.at('13:00').do(messaging)
+schedule.every(24).hours.do(scraping)
+schedule.every(24).hours.do(messaging)
 
 while True:
 	schedule.run_pending()
