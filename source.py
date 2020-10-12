@@ -35,6 +35,10 @@ google_bot = {'User-Agent':'MMozilla/5.0 (compatible; Googlebot/2.1; +http://www
 today = datetime.date.today()
 today_slash = f"{today.day}/{today.month}/{today.year}"
 
+def reminder():
+	remind_msg = client.messages.create(from_='whatsapp:+14155238886',  
+		                            body="Please send 'join opportunity-simple' after 10 mins of receiving this msg",      
+		                            to='whatsapp:+917000263689')
 
 
 # CONTINUE FURTHER ONLY IF THERE ARE ANY ITEMS IN OUR LIST
@@ -133,6 +137,7 @@ def messaging():
 # SCHEDLING THE JOB TO RUN EVERYDAY AT 01:00 PM
 schedule.every(24).hours.do(scraping)
 schedule.every(24).hours.do(messaging)
+schedule.every(71.9).hours.do(reminder)
 
 while True:
 	schedule.run_pending()
