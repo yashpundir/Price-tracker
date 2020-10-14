@@ -31,9 +31,6 @@ client = Client(account_sid, auth_token)
 # Using a googlebot user agent as most websites allow googlebot to scrape their websites
 google_bot = {'User-Agent':'MMozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)','referer':'https://www.google.com/'}
 
-# FORMATTING DATES FOR CONVINIENCE TO EXTRACT COLUMN & ROW VALUES.
-today = datetime.date.today()
-today_slash = f"{today.day}/{today.month}/{today.year}"
 
 def reminder():
 	remind_msg = client.messages.create(from_='whatsapp:+14155238886',  
@@ -43,6 +40,11 @@ def reminder():
 
 # CONTINUE FURTHER ONLY IF THERE ARE ANY ITEMS IN OUR LIST
 def scraping():
+	# FORMATTING DATES FOR CONVINIENCE.
+	today = datetime.date.today()
+	today_slash = f"{today.day}/{today.month}/{today.year}"
+	
+	
 	if len(dfu.col_values(1))>1:
 		#SEPERATING URLS OF AMAZON & FLIPKART
 		item_urls = list(zip(dfu.col_values(1)[1:],dfu.col_values(2)[1:]))
@@ -110,12 +112,13 @@ def messaging():
 			yes_value = dfa.cell(yes,item).value
 			tod_value = dfa.cell(tod,item).value
 			item_name = dfa.cell(1,item).value
-			if yes_value!='ERROR (Check pg config)' and tod_value!='ERROR (Check pg config)' and int(tod_value)<int(yes_value):
-				message = client.messages.create( 
-		                              from_='whatsapp:+14155238886',  
-		                              body=f"Hey, the price of {item_name} has dropped since yesterday. Go check it out",      
-		                              media_url=img_url,
-		                              to='whatsapp:+917000263689')
+			if yes_value.isdigit() and tod_value.isdigit():
+				if int(tod_value)<int(yes_value):
+					message = client.messages.create( 
+						      from_='whatsapp:+14155238886',  
+						      body=f"Hey, the price of {item_name} has dropped since yesterday. Go check it out",      
+						      media_url=img_url,
+						      to='whatsapp:+917000263689')
 
 	# CHECKING PRICE DROPS DOR FLIPKART PRODUCTS
 	if len(dff.col_values(1))>2:
@@ -126,12 +129,13 @@ def messaging():
 			yes_value = dff.cell(yes,item).value
 			tod_value = dff.cell(tod,item).value
 			item_name = dff.cell(1,item).value
-			if yes_value!='ERROR (Check pg config)' and tod_value!='ERROR (Check pg config)' and int(tod_value)<int(yes_value):
-				message = client.messages.create( 
-		                              from_='whatsapp:+14155238886',  
-		                              body=f"Hey, the price of {item_name} has dropped since yesterday. Go check it out",      
-		                              media_url=img_url,
-		                              to='whatsapp:+917000263689')
+			if yes_value.isdigit() and tod_value.isdigit():
+				if int(tod_value)<int(yes_value):
+					message = client.messages.create( 
+						      from_='whatsapp:+14155238886',  
+						      body=f"Hey, the price of {item_name} has dropped since yesterday. Go check it out",      
+						      media_url=img_url,
+						      to='whatsapp:+917000263689')
 
 
 # SCHEDLING THE JOB TO RUN EVERYDAY AT 01:00 PM
