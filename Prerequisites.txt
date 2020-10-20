@@ -78,7 +78,8 @@ This application uses 3 APIs :
 
 -Now onto Twilio API for sending WhatsApp message purposes. Go to twilio's website and sign up for a free account
  Verify your phone whatsapp phone number through the process shown on the website. Store you credentials safely somewhere
- that you get for your Twilio API. 
+ that you get for your Twilio API. You will need to send an 'ok' text to twilio API on your mobile everyday, for which a remonder is 
+ already set in the code. 
 
 
 < 3 > CLOUD DEPLOYMENT
