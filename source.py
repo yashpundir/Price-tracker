@@ -70,8 +70,8 @@ def scraping():
 					price_return = soup.select('#priceblock_dealprice')
 					
 					if len(price_return)!=0:
-				        price = price_return[0].text[2:]
-				        price = float(price.replace(',',''))
+				        	price = price_return[0].text[2:]
+				        	price = float(price.replace(',',''))
 					else:
 						price = 'Currently Unavailable'
 						
